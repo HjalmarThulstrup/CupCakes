@@ -18,18 +18,15 @@ public class Order {
     String username;
     ArrayList<Cupcake> cupcakes;
 
-    public Order(int id, String username) {
-        this.id = id;
-        this.username = username;
-    }
-
-    
-    
     public Order(int id, double price, String username, ArrayList<Cupcake> cupcakes) {
         this.id = id;
         this.price = price;
         this.username = username;
         this.cupcakes = cupcakes;
+    }
+        public Order(int id, String username) {
+        this.id = id;
+        this.username = username;
     }
 
     public int getId() {

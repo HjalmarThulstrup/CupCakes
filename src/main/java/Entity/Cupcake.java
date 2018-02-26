@@ -9,41 +9,53 @@ package Entity;
  *
  * @author Hjalmar
  */
-public class Cupcake {
+public class Cupcake
+{
 
-    String top, bottom;
+    CupcakePart top, bottom; //Maybe change this to use CupcakePart
     int amount;
 
-    public Cupcake(String top, String bottom, int amount) {
+    public Cupcake(CupcakePart top, CupcakePart bottom, int amount)
+    {
         this.top = top;
         this.bottom = bottom;
         this.amount = amount;
     }
 
-    public String getTop() {
+    public CupcakePart getTop()
+    {
         return top;
     }
 
-    public void setTop(String top) {
+    public void setTop(CupcakePart top)
+    {
         this.top = top;
     }
 
-    public String getBottom() {
+    public CupcakePart getBottom()
+    {
         return bottom;
     }
 
-    public void setBottom(String bottom) {
+    public void setBottom(CupcakePart bottom)
+    {
         this.bottom = bottom;
     }
 
-    public int getAmount() {
+    public int getAmount()
+    {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(int amount)
+    {
         this.amount = amount;
     }
 
-    
+    @Override
+    public String toString()
+    {
+        return "Cupcake{" + "top: " + top.getName() + ", bottom: " + bottom.getName() + ", amount: " + amount + '}';
+    }
 
 }
