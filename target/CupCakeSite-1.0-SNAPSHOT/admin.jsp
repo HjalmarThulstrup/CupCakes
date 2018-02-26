@@ -24,7 +24,7 @@
         <h1 style="text-align: center; margin: auto; margin-top: 5%;">Hello <%= user.getUsername()%>!</h1>
         <div class="wrapper" style="margin-top: 0;">
             <h2>Orders</h2>
-            <form id='formOrders' style="margin: auto; max-width: 168px;" action='Order' method='post'>
+            <form id='formOrders' style="margin: auto; max-width: 180px;" action='Order' method='post'>
                 <select name="orderId">
                     <% for (Order order : dao.getOrders()) {
                             out.println("<option value='" + order.getId() + "'>" + "Order id: " + order.getId() + "</option>");

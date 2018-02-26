@@ -3,6 +3,7 @@
     <nav>
         <a href="index.jsp">Front Page</a>
         <a href="order.jsp">Order Cupcakes</a>
+        <a href="prices.jsp">Prices</a>
         <% if (session.getAttribute("user") != null) {
                 out.println("<a href='user.jsp' >User</a>");
                 out.println("<a href='cart.jsp'>Cart</a>");
