@@ -156,7 +156,7 @@ public class DAO {
         ArrayList<Order> orderList = new ArrayList<>();
         ArrayList<Cupcake> cupcakeList = new ArrayList<>();
         String username = null, bottomName, topName;
-        int amount, orderId = 1;
+        int amount, orderId = 1, cupcakeTopId, cupcakeBottomId;
         double price = 0.0;
 
         try {
@@ -182,8 +182,10 @@ public class DAO {
                 topName = resultset.getString("cupcake_tops.name");
                 amount = resultset.getInt("amount");
                 price = resultset.getDouble("orders.price");
+                cupcakeTopId = resultset.getInt("cupcake_tops.top_Id");
+                cupcakeBottomId = resultset.getInt("cupcake_tops.top_Id");
 
-                cupcakeList.add(new Cupcake(topName, bottomName, amount));
+                cupcakeList.add(new Cupcake(new CupcakePart(cupcakeTopId, price, topName), new CupcakePart(cupcakeBottomId, price, topName), amount));
 
                 prevOrderId = orderId;
             }

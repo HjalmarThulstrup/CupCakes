@@ -11,8 +11,7 @@ package Entity;
  */
 public class Cupcake
 {
-
-    CupcakePart top, bottom; //Maybe change this to use CupcakePart
+    CupcakePart top, bottom;
     int amount;
 
     public Cupcake(CupcakePart top, CupcakePart bottom, int amount)
