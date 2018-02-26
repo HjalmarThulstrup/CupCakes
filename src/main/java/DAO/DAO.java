@@ -140,7 +140,7 @@ public class DAO
                 amount = resultset.getInt("amount");
                 price = resultset.getDouble("orders.price");
                 cupcakeTopId = resultset.getInt("cupcake_tops.top_Id");
-                cupcakeBottomId = resultset.getInt("cupcake_tops.top_Id");
+                cupcakeBottomId = resultset.getInt("cupcake_bottoms.top_Id");
 
                 cupcakeList.add(new Cupcake(new CupcakePart(cupcakeTopId, price, topName), new CupcakePart(cupcakeBottomId, price, topName), amount));
 
@@ -169,7 +169,7 @@ public class DAO
         try {
             dbc.open();
 
-            String sql = "select users.username, cupcake_bottoms.name, cupcake_tops.name, cupcakeOrders.amount, cupcakeOrders.order, orders.price "
+            String sql = "select users.username, cupcake_bottoms.name, cupcake_tops.name, cupcake_tops.top_Id, cupcake_bottoms.bottom_Id, cupcakeOrders.amount, cupcakeOrders.order, orders.price "
                     + "from cupcake_factory.cupcakeOrders "
                     + "inner join orders on cupcakeOrders.order = orders.order_Id "
                     + "inner join users on orders.user = users.user_Id "
@@ -190,7 +190,7 @@ public class DAO
                 amount = resultset.getInt("amount");
                 price = resultset.getDouble("orders.price");
                 cupcakeTopId = resultset.getInt("cupcake_tops.top_Id");
-                cupcakeBottomId = resultset.getInt("cupcake_tops.top_Id");
+                cupcakeBottomId = resultset.getInt("cupcake_bottoms.bottom_Id");
 
                 cupcakeList.add(new Cupcake(new CupcakePart(cupcakeTopId, price, topName), new CupcakePart(cupcakeBottomId, price, topName), amount));
 
@@ -220,14 +220,14 @@ public class DAO
         }
 
         try {
-            dbc.open();
+             dbc.open();
             Statement stmt = dbc.getConnection().createStatement();
 
-            String sql = "INSERT INTO cupcake_factory.orders (orders.user, orders.price) values ('" + userId + "', '" + price + "');";
-            stmt.executeUpdate(sql);
+            String sql1 = "INSERT INTO cupcake_factory.orders (orders.user, orders.price) values ('" + userId + "', '" + price + "');";
+            stmt.executeUpdate(sql1);
 
-            sql = "select orders.order_Id from orders order by order_Id desc LIMIT 1";
-            ResultSet resultset = dbc.query(sql);
+            String sql2 = "select orders.order_Id from orders order by order_Id desc LIMIT 1";
+            ResultSet resultset = dbc.query(sql2);
 
             int orderId = 0;
             while (resultset.next()) {
@@ -235,18 +235,18 @@ public class DAO
             }
 
             for (Cupcake cupcake : cupcakes) {
-                String sql1 = "INSERT INTO cupcake_factory.cupcakes (cupcakes.top, cupcakes.bottom) values ('" + cupcake.getTop().getId() + "', '" + cupcake.getBottom().getId() + "');";
-                stmt.executeUpdate(sql1);
+                String sql3 = "INSERT INTO cupcake_factory.cupcakes (cupcakes.top, cupcakes.bottom) values ('" + cupcake.getTop().getId() + "', '" + cupcake.getBottom().getId() + "');";
+                stmt.executeUpdate(sql3);
 
-                sql = "select cupcakes.cupcake_Id from cupcakes order by cupcake_Id desc LIMIT 1";
-                resultset = dbc.query(sql);
+                String sql4 = "select cupcakes.cupcake_Id from cupcakes order by cupcake_Id desc LIMIT 1";
+                resultset = dbc.query(sql4);
 
                 int cakeId = 0;
                 while (resultset.next()) {
                     cakeId = resultset.getInt("cupcakes.cupcake_Id");
                 }
-                String sql2 = "INSERT INTO cupcake_factory.cupcakeOrders (order, cupcake, amount) values (" + orderId + ", " + cakeId + ", " + cupcake.getAmount() + ");";
-                stmt.executeUpdate(sql2);
+                String sql5 = "INSERT INTO cupcake_factory.cupcakeOrders (cupcakeOrders.order, cupcakeOrders.cupcake, cupcakeOrders.amount) values (" + orderId + ", " + cakeId + ", " + cupcake.getAmount() + ");";
+                stmt.executeUpdate(sql5);
             }
 
             dbc.close();

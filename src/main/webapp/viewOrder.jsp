@@ -31,7 +31,7 @@
                             out.println("<b>Order id:</b> " + order.getId() + " <b>Username:</b> " + order.getUsername() + " <b>Price:</b> " + order.getPrice());
                             for (Cupcake cupcake : order.getCupcakes()) {
                                 out.println("<br>-----");
-                                out.println("<b>Bottom:</b> " + cupcake.getBottom() + " <b>Top:</b> " + cupcake.getTop() + " <b>Amount:</b> " + cupcake.getAmount());
+                                out.println("<b>Bottom:</b> " + cupcake.getBottom().getName() + " <b>Top:</b> " + cupcake.getTop().getName() + " <b>Amount:</b> " + cupcake.getAmount());
                             }
                         }
 
