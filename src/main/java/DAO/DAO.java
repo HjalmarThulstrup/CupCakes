@@ -11,6 +11,7 @@ import Entity.Order;
 import Entity.OrderPiece;
 import Entity.User;
 import dbconnector.DBConnector;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,6 +25,7 @@ import javax.sql.DataSource;
 public class DAO {
 
     private DBConnector dbc = new DBConnector();
+    private final Connection conn = dbc.getConnection();
 
     public DAO(DataSource ds) {
         dbc.setDataSource(ds);
@@ -339,7 +341,7 @@ public class DAO {
 
             for (OrderPiece order : orderList) {
                 try {
-                    Statement stmt = conn.getConnection().createStatement();
+                    Statement stmt = conn.createStatement();
                     String sql = "";
 
                     stmt.executeUpdate(sql);

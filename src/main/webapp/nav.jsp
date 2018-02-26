@@ -2,7 +2,7 @@
 <form class="nav" style="margin: 0;" action='logOut' method='post'>
     <nav>
         <a href="index.jsp">Front Page</a>
-        <a href="testjsp.jsp">Order Cupcakes</a>
+        <a href="order.jsp">Order Cupcakes</a>
         <% if (session.getAttribute("user") != null) {
                 out.println("<a href='user.jsp' >User</a>");
                 out.println("<a href='cart.jsp'>Cart</a>");
