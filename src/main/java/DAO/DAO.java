@@ -6,7 +6,9 @@
 package DAO;
 
 import Entity.Cupcake;
+import Entity.CupcakePart;
 import Entity.Order;
+import Entity.OrderPiece;
 import Entity.User;
 import dbconnector.DBConnector;
 import java.sql.ResultSet;
