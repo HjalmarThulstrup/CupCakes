@@ -5,13 +5,18 @@
  */
 package Servlet;
 
+import DAO.DAO;
+import Entity.User;
+import datasource.DataSource1;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,16 +40,17 @@ public class Checkout extends HttpServlet
     {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Checkout</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Checkout at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            DAO dao = new DAO(new DataSource1().getDataSource());
+            HttpSession session = request.getSession();
+            ArrayList orderList = (ArrayList) session.getAttribute("orderList");
+            User user = (User) session.getAttribute("user");
+            dao.createOrder(orderList, user.getId());
+
+            //LOL
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Order added to cart');");
+            out.println("location='order.jsp';");
+            out.println("</script>");
         }
     }
 

@@ -22,16 +22,19 @@ import javax.sql.DataSource;
  *
  * @author Hjalmar
  */
-public class DAO {
+public class DAO
+{
 
     private DBConnector dbc = new DBConnector();
     private final Connection conn = dbc.getConnection();
 
-    public DAO(DataSource ds) {
+    public DAO(DataSource ds)
+    {
         dbc.setDataSource(ds);
     }
 
-    public User validateUser(String username, String password) {
+    public User validateUser(String username, String password)
+    {
         try {
             dbc.open();
 
@@ -56,7 +59,8 @@ public class DAO {
         return null;
     }
 
-    public boolean createUser(String username, String password, String email) {
+    public boolean createUser(String username, String password, String email)
+    {
         try {
             dbc.open();
 
@@ -76,7 +80,8 @@ public class DAO {
         return false;
     }
 
-    public ArrayList<Order> getOrders() {
+    public ArrayList<Order> getOrders()
+    {
         ArrayList<Order> orders = new ArrayList<>();
 
         try {
@@ -153,8 +158,8 @@ public class DAO {
         return null;
     }
 
-
-    public ArrayList<Order> getOrder(int id) {
+    public ArrayList<Order> getOrder(int id)
+    {
         ArrayList<Order> orderList = new ArrayList<>();
         ArrayList<Cupcake> cupcakeList = new ArrayList<>();
         String username = null, bottomName, topName;
@@ -203,25 +208,46 @@ public class DAO {
         return null;
     }
 
-
 //DEPRICATEROO'D
-    public boolean createOrder(int userId, int price, int bottomId, int topId, int amount) {
+    public boolean createOrder(ArrayList<OrderPiece> orderPieces, int userId)
+    {
+        double price = 0;
+        ArrayList<Cupcake> cupcakes = new ArrayList();
+
+        for (OrderPiece piece : orderPieces) {
+            price += piece.getPrice();
+            cupcakes.add(piece.getCake());
+        }
+
         try {
             dbc.open();
-
-            String sql = "INSERT INTO cupcake_factory.orders (orders.user, orders.price) values ('" + userId + "', '" + price + "');";
-
             Statement stmt = dbc.getConnection().createStatement();
 
+            String sql = "INSERT INTO cupcake_factory.orders (orders.user, orders.price) values ('" + userId + "', '" + price + "');";
             stmt.executeUpdate(sql);
 
-            String sql2 = "INSERT INTO cupcake_factory.cupcakes (cupcakes.bottom, cupcakes.top) values ('" + bottomId + "', '" + topId + "');";
+            sql = "select orders.order_Id from orders order by order_Id desc LIMIT 1";
+            ResultSet resultset = dbc.query(sql);
 
-            stmt.executeUpdate(sql2);
-            
-            String sql3 = "";
+            int orderId = 0;
+            while (resultset.next()) {
+                orderId = resultset.getInt("order_Id");
+            }
 
-            stmt.executeUpdate(sql3);
+            for (Cupcake cupcake : cupcakes) {
+                String sql1 = "INSERT INTO cupcake_factory.cupcakes (cupcakes.top, cupcakes.bottom) values ('" + cupcake.getTop().getId() + "', '" + cupcake.getBottom().getId() + "');";
+                stmt.executeUpdate(sql1);
+
+                sql = "select cupcakes.cupcake_Id from cupcakes order by cupcake_Id desc LIMIT 1";
+                resultset = dbc.query(sql);
+
+                int cakeId = 0;
+                while (resultset.next()) {
+                    cakeId = resultset.getInt("cupcakes.cupcake_Id");
+                }
+                String sql2 = "INSERT INTO cupcake_factory.cupcakeOrders (order, cupcake, amount) values (" + orderId + ", " + cakeId + ", " + cupcake.getAmount() + ");";
+                stmt.executeUpdate(sql2);
+            }
 
             dbc.close();
 
@@ -232,7 +258,7 @@ public class DAO {
         return false;
     }
 
-        public ArrayList<CupcakePart> getCupcakeTops()
+    public ArrayList<CupcakePart> getCupcakeTops()
     {
         ArrayList<CupcakePart> parts = new ArrayList<>();
 
@@ -332,26 +358,5 @@ public class DAO {
         }
 
         return null;
-    }
-
-    public void performTransaction(ArrayList<OrderPiece> orderList)
-    {
-        try {
-            dbc.open();
-
-            for (OrderPiece order : orderList) {
-                try {
-                    Statement stmt = conn.createStatement();
-                    String sql = "";
-
-                    stmt.executeUpdate(sql);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            dbc.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 }
