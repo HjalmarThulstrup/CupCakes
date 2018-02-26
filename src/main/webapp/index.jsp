@@ -16,7 +16,9 @@
         <%@include file="nav.jsp" %>
         <div class="wrapper">
             <h1>Welcome to our CupCakes Site!</h1>
-            <a href="testjsp.jsp">Order cupcakes here</a>
+            <div style="width: 300px; margin: auto;">
+                <img src="Cupcakes-9.png" alt="cupcake" />
+            </div>
         </div>
     </body>
 </html>

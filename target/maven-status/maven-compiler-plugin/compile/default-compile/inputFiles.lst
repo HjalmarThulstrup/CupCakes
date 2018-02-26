@@ -1,3 +1,16 @@
 C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\datasource\DataSource1.java
-C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\DAO\DAO.java
+C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\Entity\Cupcake.java
+C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\Entity\OrderPiece.java
+C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\Servlet\AddToCart.java
+C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\Entity\User.java
 C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\dbconnector\DBConnector.java
+C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\Servlet\Order.java
+C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\Servlet\Checkout.java
+C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\Servlet\RemoveFromCart.java
+C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\Servlet\Login.java
+C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\DAO\DAO.java
+C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\Servlet\logOut.java
+C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\Servlet\UserCreate.java
+C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\Entity\Order.java
+C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\Entity\CupcakePart.java
+C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\Entity\OrderId.java

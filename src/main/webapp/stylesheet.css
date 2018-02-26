@@ -36,6 +36,11 @@ h2{
     padding: 5px;
 }
 
+.imgdiv {
+    width: 50%; 
+    margin: auto;
+}
+
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -122,5 +127,6 @@ a {
     width: 0;
     margin: 0;
 }
+
 
 
