@@ -77,6 +77,62 @@ public class DAO {
         }
         return null;
     }
+    
+    public ArrayList<User> getUsers()
+    {
+        ArrayList<User> users = new ArrayList<>();
+        try {
+            dbc.open();
+
+            String sql = "SELECT * FROM cupcake_factory.users;";
+            ResultSet resultset = dbc.query(sql);
+
+            while (resultset.next()) {
+                String username = resultset.getString("username");
+                String email = resultset.getString("email");
+                String password = resultset.getString("password");
+                int role = resultset.getInt("role");
+                int id = resultset.getInt("user_Id");
+
+                if (role != 0) {
+                    users.add(new User(id, username, password, email, role));
+                }
+            }
+            dbc.close();
+
+            return users;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public User getUser(int id)
+    {
+        User user = null;
+        try {
+            dbc.open();
+
+            String sql = "SELECT * FROM cupcake_factory.users WHERE user_Id = " + id + ";";
+            ResultSet resultset = dbc.query(sql);
+
+            while (resultset.next()) {
+                String username = resultset.getString("username");
+                String email = resultset.getString("email");
+                String password = resultset.getString("password");
+                int role = resultset.getInt("role");
+                int userId = resultset.getInt("user_Id");
+
+                user = new User(userId, username, password, email, role);
+            }
+            dbc.close();
+
+            return user;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public ArrayList<Order> getOrders() {
         ArrayList<Order> orders = new ArrayList<>();
