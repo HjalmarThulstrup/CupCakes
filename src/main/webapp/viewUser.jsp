@@ -33,7 +33,7 @@
                         out.println("<b>User id:</b> " + user.getId() + " <b>Username:</b> " + user.getUsername() + " <b>Email:</b> " + user.getEmail());
                     }
                 %>
-            <form id='formOrders' style="margin: auto; max-width: 168px;" action='DeleteUser' method='post'>
+            <form action='DeleteUser' method='post'>
                 <input type="submit" value="Delete User">
             </form>
 

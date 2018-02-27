@@ -45,7 +45,10 @@ public class Checkout extends HttpServlet
             ArrayList orderList = (ArrayList) session.getAttribute("orderList");
             User user = (User) session.getAttribute("user");
             dao.createOrder(orderList, user.getId());
-
+            
+            orderList.clear();
+            session.setAttribute("orderList", orderList);
+            
             //LOL
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Order added to cart');");
