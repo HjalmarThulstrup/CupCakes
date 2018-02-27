@@ -51,7 +51,7 @@ public class Checkout extends HttpServlet
             
             //LOL
             out.println("<script type=\"text/javascript\">");
-            out.println("alert('Order added to cart');");
+            out.println("alert('Order placed');");
             out.println("location='order.jsp';");
             out.println("</script>");
         }
