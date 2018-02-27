@@ -1,6 +1,7 @@
 Entity\OrderId.class
 Servlet\logOut.class
 dbconnector\DBConnector.class
+Servlet\deleteOrder.class
 Entity\OrderPiece.class
 Entity\CupcakePart.class
 Entity\User.class

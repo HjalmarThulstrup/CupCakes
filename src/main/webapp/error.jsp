@@ -10,8 +10,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Error Page</title>
+        <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <h1>Hello Error!</h1>
+        <%@include file="nav.jsp" %>
+        <div class="wrapper">
+            <h1>Hello Error!</h1>
+        </div>
     </body>
 </html>

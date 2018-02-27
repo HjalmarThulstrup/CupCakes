@@ -350,4 +350,30 @@ public class DAO {
         return null;
     }
 
+    public boolean deleteOrder(int id) {
+        try {
+            dbc.open();
+
+            String sql = "delete from cupcake_factory.cupcakeOrders where cupcakeOrders.order = " + id + ";";
+
+            Statement stmt = dbc.getConnection().createStatement();
+
+            stmt.executeUpdate(sql);
+
+            String sql2 = "delete from cupcake_factory.orders where orders.order_Id = " + id + ";";
+
+            stmt.executeUpdate(sql2);
+
+            dbc.close();
+            
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+
+    }
+
 }
