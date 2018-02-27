@@ -38,7 +38,7 @@
         </div>
         <div class="wrapper" style="margin-top: 2%;">
             <h2>Orders</h2>
-            <% for (Order order : dao.getOrdersWithInfo(user.getId())) {
+            <% for (Order order : dao.getOrdersWithInfoForUser(user.getId())) {
                     if (order.getUsername() != null) {
                         out.println("<b>Order id:</b> " + order.getId() + " <b>Username:</b> " + order.getUsername() + " <b>Price:</b> " + order.getPrice());
                         for (Cupcake cupcake : order.getCupcakes()) {
@@ -49,7 +49,15 @@
                     out.println("<br>");
                     out.println("<br>");
                 }%>
-
+            <form id='formDeleteOrders' style="margin: auto; max-width: 200px;" action='deleteOrder' method='post'>
+                <select name="orderId">
+                    <% for (Order order : dao.getOrdersUserId(user.getId())) {
+                            out.println("<option value='" + order.getId() + "'>" + "Order id: " + order.getId() + "</option>");
+                        }%>
+                </select>
+                <input type="text" name="is_Admin" value="<%= user.isAdmin()%>" hidden="true">
+                <input type="submit" value="Delete Order">
+            </form>
         </div>
     </body>
 </html>

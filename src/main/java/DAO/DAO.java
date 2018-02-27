@@ -160,6 +160,33 @@ public class DAO {
         }
         return null;
     }
+    
+    public ArrayList<Order> getOrdersUserId(int id) {
+        ArrayList<Order> orders = new ArrayList<>();
+
+        try {
+            dbc.open();
+
+            String sql = "select orders.order_Id, users.username from orders "
+                    + "inner join users on orders.user = users.user_Id where orders.user = " + id + ";";
+
+            ResultSet resultset = dbc.query(sql);
+            while (resultset.next()) {
+                String username = resultset.getString("users.username");
+                int order_id = resultset.getInt("orders.order_Id");
+
+                orders.add(new Order(order_id, username));
+            }
+
+            dbc.close();
+
+            return orders;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public ArrayList<Order> getOrdersWithInfo() {
         ArrayList<Order> orderList = new ArrayList<>();
@@ -210,7 +237,7 @@ public class DAO {
         return null;
     }
     
-    public ArrayList<Order> getOrdersWithInfo(int id) {
+    public ArrayList<Order> getOrdersWithInfoForUser(int id) {
         ArrayList<Order> orderList = new ArrayList<>();
         ArrayList<Cupcake> cupcakeList = new ArrayList<>();
         String username = null, bottomName, topName;
@@ -226,7 +253,7 @@ public class DAO {
                     + "inner join users on orders.user = users.user_Id "
                     + "inner join cupcakes on cupcakeOrders.cupcake = cupcakes.cupcake_Id "
                     + "inner join cupcake_bottoms on cupcakes.bottom = cupcake_bottoms.bottom_Id "
-                    + "inner join cupcake_tops on cupcakes.top = cupcake_tops.top_Id where orders.user = " + id + ";";
+                    + "inner join cupcake_tops on cupcakes.top = cupcake_tops.top_Id where orders.user = " + id + " order by cupcakeOrders.order;";
             ResultSet resultset = dbc.query(sql);
             int prevOrderId = orderId;
             while (resultset.next()) {

@@ -39,12 +39,13 @@
                             out.println("<option value='" + order.getId() + "'>" + "Order id: " + order.getId() + "</option>");
                         }%>
                 </select>
+                 <input type="text" name="is_Admin" value="<%= user.isAdmin()%>" hidden="true">
                 <input type="submit" value="Delete Order">
             </form>
         </div>
         <div class="wrapper" style="margin-top: 20px;">
             <h2>Users</h2>
-            <form id='formOrders' style="margin: auto;" action='ViewUser' method='post'>
+            <form action='ViewUser' method='post'>
                 <select name="userId">
                     <% for (User userList : dao.getUsers()) {
                             out.println("<option value='" + userList.getId() + "'>" + "Username: " + userList.getUsername() + "</option>");

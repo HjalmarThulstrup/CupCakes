@@ -37,13 +37,18 @@ public class deleteOrder extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try (PrintWriter out = response.getWriter()) {
             int orderId = Integer.parseInt(request.getParameter("orderId"));
+            int isAdmin = Integer.parseInt(request.getParameter("is_Admin"));
             if (dao.deleteOrder(orderId)) {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Order has been deleted');");
-                out.println("location='admin.jsp';");
+                if (isAdmin == 0) {
+                    out.println("location='admin.jsp';");
+                } else {
+                    out.println("location='user.jsp';");
+                }
                 out.println("</script>");
-            }else{
-            response.sendRedirect("error.jsp");
+            } else {
+                response.sendRedirect("error.jsp");
             }
         }
     }

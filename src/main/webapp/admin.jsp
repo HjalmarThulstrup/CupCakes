@@ -39,6 +39,7 @@
                             out.println("<option value='" + order.getId() + "'>" + "Order id: " + order.getId() + "</option>");
                         }%>
                 </select>
+                 <input type="text" name="is_Admin" value="<%= user.isAdmin()%>" hidden="true">
                 <input type="submit" value="Delete Order">
             </form>
         </div>
