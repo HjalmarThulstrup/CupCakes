@@ -39,15 +39,15 @@ public class UserCreate extends HttpServlet {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             String email = request.getParameter("email");
-            
-            if (dao.createUser(username, password, email)) {
-                User u = dao.validateUser(username, password);
+
+            User u = dao.createAndValidateUser(username, password, email);
+
+            if (u == null) {
+                request.getRequestDispatcher("error.jsp").forward(request, response);
+            } else {
                 request.getSession().setAttribute("user", u);
                 response.sendRedirect("user.jsp");
-            } else {
-                response.sendRedirect("error.jsp");
             }
-
         }
     }
 
