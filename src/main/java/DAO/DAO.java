@@ -192,7 +192,56 @@ public class DAO {
                 amount = resultset.getInt("amount");
                 price = resultset.getDouble("orders.price");
                 cupcakeTopId = resultset.getInt("cupcake_tops.top_Id");
-                cupcakeBottomId = resultset.getInt("cupcake_bottoms.top_Id");
+                cupcakeBottomId = resultset.getInt("cupcake_bottoms.bottom_Id");
+
+                cupcakeList.add(new Cupcake(new CupcakePart(cupcakeTopId, price, topName), new CupcakePart(cupcakeBottomId, price, topName), amount));
+
+                prevOrderId = orderId;
+            }
+            orderList.add(new Order(orderId, price, username, cupcakeList));
+
+            dbc.close();
+
+            return orderList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+    
+    public ArrayList<Order> getOrdersWithInfo(int id) {
+        ArrayList<Order> orderList = new ArrayList<>();
+        ArrayList<Cupcake> cupcakeList = new ArrayList<>();
+        String username = null, bottomName, topName;
+        int amount, orderId = 1, cupcakeTopId, cupcakeBottomId;
+        double price = 0.0;
+
+        try {
+            dbc.open();
+
+            String sql = "select users.username, cupcake_bottoms.name, cupcake_tops.name, cupcake_tops.top_Id, cupcake_bottoms.bottom_Id, cupcakeOrders.amount, cupcakeOrders.order, orders.price "
+                    + "from cupcake_factory.cupcakeOrders "
+                    + "inner join orders on cupcakeOrders.order = orders.order_Id "
+                    + "inner join users on orders.user = users.user_Id "
+                    + "inner join cupcakes on cupcakeOrders.cupcake = cupcakes.cupcake_Id "
+                    + "inner join cupcake_bottoms on cupcakes.bottom = cupcake_bottoms.bottom_Id "
+                    + "inner join cupcake_tops on cupcakes.top = cupcake_tops.top_Id where orders.user = " + id + ";";
+            ResultSet resultset = dbc.query(sql);
+            int prevOrderId = orderId;
+            while (resultset.next()) {
+                orderId = resultset.getInt("cupcakeOrders.order");
+                if (orderId != prevOrderId) {
+                    orderList.add(new Order(prevOrderId, price, username, cupcakeList));
+                    cupcakeList = new ArrayList<>();
+                }
+                username = resultset.getString("users.username");
+                bottomName = resultset.getString("cupcake_bottoms.name");
+                topName = resultset.getString("cupcake_tops.name");
+                amount = resultset.getInt("amount");
+                price = resultset.getDouble("orders.price");
+                cupcakeTopId = resultset.getInt("cupcake_tops.top_Id");
+                cupcakeBottomId = resultset.getInt("cupcake_bottoms.bottom_Id");
 
                 cupcakeList.add(new Cupcake(new CupcakePart(cupcakeTopId, price, topName), new CupcakePart(cupcakeBottomId, price, topName), amount));
 

@@ -1,7 +1,9 @@
 C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\datasource\DataSource1.java
 C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\Entity\Cupcake.java
+C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\Servlet\ViewUser.java
 C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\Entity\OrderPiece.java
 C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\Servlet\AddToCart.java
+C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\Servlet\DeleteUser.java
 C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\Entity\User.java
 C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\dbconnector\DBConnector.java
 C:\Users\Hjalmar\Skoleting\2 Semester\CupCakeSite\src\main\java\Servlet\Order.java

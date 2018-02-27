@@ -24,7 +24,7 @@
         <h1 style="text-align: center; margin: auto; margin-top: 5%;">Hello <%= user.getUsername()%>!</h1>
         <div class="wrapper" style="margin-top: 0;">
             <h2>Orders</h2>
-            <form id='formOrders' style="margin: auto; max-width: 190px;" action='Order' method='post'>
+            <form id='formOrders' style="margin: auto; max-width: 200px;" action='Order' method='post'>
                 <select name="orderId">
                     <% for (Order order : dao.getOrders()) {
                             out.println("<option value='" + order.getId() + "'>" + "Order id: " + order.getId() + "</option>");
@@ -33,13 +33,24 @@
                 <input type="submit" value="View Order">
             </form>
             <br>
-            <form id='formDeleteOrders' style="margin: auto; max-width: 190px;" action='deleteOrder' method='post'>
+            <form id='formDeleteOrders' style="margin: auto; max-width: 200px   ;" action='deleteOrder' method='post'>
                 <select name="orderId">
                     <% for (Order order : dao.getOrders()) {
                             out.println("<option value='" + order.getId() + "'>" + "Order id: " + order.getId() + "</option>");
                         }%>
                 </select>
                 <input type="submit" value="Delete Order">
+            </form>
+        </div>
+        <div class="wrapper" style="margin-top: 20px;">
+            <h2>Users</h2>
+            <form id='formOrders' style="margin: auto;" action='ViewUser' method='post'>
+                <select name="userId">
+                    <% for (User userList : dao.getUsers()) {
+                            out.println("<option value='" + userList.getId() + "'>" + "Username: " + userList.getUsername() + "</option>");
+                        }%>
+                </select>
+                <input type="submit" value="View user info">
             </form>
         </div>
     </body>

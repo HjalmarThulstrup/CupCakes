@@ -2,8 +2,10 @@ Entity\OrderId.class
 Servlet\logOut.class
 dbconnector\DBConnector.class
 Servlet\deleteOrder.class
+Servlet\DeleteUser.class
 Entity\OrderPiece.class
 Entity\CupcakePart.class
+Servlet\ViewUser.class
 Entity\User.class
 Servlet\AddToCart.class
 Entity\Order.class
