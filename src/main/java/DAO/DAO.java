@@ -375,5 +375,28 @@ public class DAO {
         return false;
 
     }
+    
+     public boolean deleteUser(int userId)
+    {
+        try {
+            dbc.open();
+            Statement stmt = dbc.getConnection().createStatement();
+
+            String userDel = "DELETE FROM cupcake_factory.users WHERE user_Id = " + userId + ";";
+            String orderDel = "DELETE FROM cupcake_factory.orders WHERE user = " + userId + ";";
+            String cupcakeOrderDel = "DELETE FROM cupcake_factory.cupcakeOrders WHERE cupcakeOrders.order = (SELECT order_Id FROM cupcake_factory.orders WHERE user = " + userId + ");";
+
+            stmt.executeUpdate(cupcakeOrderDel);
+            stmt.executeUpdate(orderDel);
+            stmt.executeUpdate(userDel);
+
+            dbc.close();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 }
