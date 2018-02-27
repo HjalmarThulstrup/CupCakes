@@ -6,6 +6,7 @@
 package Servlet;
 
 import DAO.DAO;
+import Entity.User;
 import datasource.DataSource1;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,8 +39,10 @@ public class UserCreate extends HttpServlet {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             String email = request.getParameter("email");
-
+            
             if (dao.createUser(username, password, email)) {
+                User u = dao.validateUser(username, password);
+                request.getSession().setAttribute("user", u);
                 response.sendRedirect("user.jsp");
             } else {
                 response.sendRedirect("error.jsp");
