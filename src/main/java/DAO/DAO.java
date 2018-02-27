@@ -22,19 +22,16 @@ import javax.sql.DataSource;
  *
  * @author Hjalmar
  */
-public class DAO
-{
+public class DAO {
 
     private DBConnector dbc = new DBConnector();
     private final Connection conn = dbc.getConnection();
 
-    public DAO(DataSource ds)
-    {
+    public DAO(DataSource ds) {
         dbc.setDataSource(ds);
     }
 
-    public User validateUser(String username, String password)
-    {
+    public User validateUser(String username, String password) {
         try {
             dbc.open();
 
@@ -59,13 +56,12 @@ public class DAO
         return null;
     }
 
-    public boolean createUser(String username, String password, String email)
-    {
+    public User createAndValidateUser(String username, String password, String email) {
         try {
             dbc.open();
 
-            String sql = "INSERT INTO cupcake_factory.users (users.username, users.password, users.email, users.balance, users.role) values (\"" + username + "\", \"" + password + "\", \""
-                    + email + "\", " + 0 + ", " + 1 + ");";
+            String sql = "INSERT INTO cupcake_factory.users (users.username, users.password, users.email, users.balance, users.role) values ('" + username + "', '" + password + "', '"
+                    + email + "', " + 0 + ", " + 1 + ");";
 
             Statement stmt = dbc.getConnection().createStatement();
 
@@ -73,15 +69,16 @@ public class DAO
 
             dbc.close();
 
-            return true;
+            User u = validateUser(username, password);
+
+            return u;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
     }
 
-    public ArrayList<Order> getOrders()
-    {
+    public ArrayList<Order> getOrders() {
         ArrayList<Order> orders = new ArrayList<>();
 
         try {
@@ -108,8 +105,7 @@ public class DAO
         return null;
     }
 
-    public ArrayList<Order> getOrdersWithInfo()
-    {
+    public ArrayList<Order> getOrdersWithInfo() {
         ArrayList<Order> orderList = new ArrayList<>();
         ArrayList<Cupcake> cupcakeList = new ArrayList<>();
         String username = null, bottomName, topName;
@@ -158,8 +154,7 @@ public class DAO
         return null;
     }
 
-    public ArrayList<Order> getOrder(int id)
-    {
+    public ArrayList<Order> getOrder(int id) {
         ArrayList<Order> orderList = new ArrayList<>();
         ArrayList<Cupcake> cupcakeList = new ArrayList<>();
         String username = null, bottomName, topName;
@@ -209,8 +204,7 @@ public class DAO
     }
 
 //DEPRICATEROO'D
-    public boolean createOrder(ArrayList<OrderPiece> orderPieces, int userId)
-    {
+    public boolean createOrder(ArrayList<OrderPiece> orderPieces, int userId) {
         double price = 0;
         ArrayList<Cupcake> cupcakes = new ArrayList();
 
@@ -220,7 +214,7 @@ public class DAO
         }
 
         try {
-             dbc.open();
+            dbc.open();
             Statement stmt = dbc.getConnection().createStatement();
 
             String sql1 = "INSERT INTO cupcake_factory.orders (orders.user, orders.price) values ('" + userId + "', '" + price + "');";
@@ -258,8 +252,7 @@ public class DAO
         return false;
     }
 
-    public ArrayList<CupcakePart> getCupcakeTops()
-    {
+    public ArrayList<CupcakePart> getCupcakeTops() {
         ArrayList<CupcakePart> parts = new ArrayList<>();
 
         try {
@@ -285,8 +278,7 @@ public class DAO
         return null;
     }
 
-    public ArrayList<CupcakePart> getCupcakeBottoms()
-    {
+    public ArrayList<CupcakePart> getCupcakeBottoms() {
         ArrayList<CupcakePart> parts = new ArrayList<>();
 
         try {
@@ -312,8 +304,7 @@ public class DAO
         return null;
     }
 
-    public CupcakePart getCupcakeBottom(int id)
-    {
+    public CupcakePart getCupcakeBottom(int id) {
         try {
             dbc.open();
 
@@ -336,8 +327,7 @@ public class DAO
         return null;
     }
 
-    public CupcakePart getCupcakeTop(int id)
-    {
+    public CupcakePart getCupcakeTop(int id) {
         try {
             dbc.open();
 
@@ -359,4 +349,31 @@ public class DAO
 
         return null;
     }
+
+    public boolean deleteOrder(int id) {
+        try {
+            dbc.open();
+
+            String sql = "delete from cupcake_factory.cupcakeOrders where cupcakeOrders.order = " + id + ";";
+
+            Statement stmt = dbc.getConnection().createStatement();
+
+            stmt.executeUpdate(sql);
+
+            String sql2 = "delete from cupcake_factory.orders where orders.order_Id = " + id + ";";
+
+            stmt.executeUpdate(sql2);
+
+            dbc.close();
+            
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+
+    }
+
 }

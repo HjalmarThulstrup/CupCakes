@@ -6,7 +6,7 @@
 package Servlet;
 
 import DAO.DAO;
-import Entity.User;
+import Entity.OrderId;
 import datasource.DataSource1;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Hjalmar
  */
-@WebServlet(name = "UserCreate", urlPatterns = {"/UserCreate"})
-public class UserCreate extends HttpServlet {
+@WebServlet(name = "deleteOrder", urlPatterns = {"/deleteOrder"})
+public class deleteOrder extends HttpServlet {
 
     DAO dao = new DAO(new DataSource1().getDataSource());
 
@@ -36,17 +36,14 @@ public class UserCreate extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try (PrintWriter out = response.getWriter()) {
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-            String email = request.getParameter("email");
-
-            User u = dao.createAndValidateUser(username, password, email);
-
-            if (u == null) {
-                request.getRequestDispatcher("error.jsp").forward(request, response);
-            } else {
-                request.getSession().setAttribute("user", u);
-                response.sendRedirect("user.jsp");
+            int orderId = Integer.parseInt(request.getParameter("orderId"));
+            if (dao.deleteOrder(orderId)) {
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Order has been deleted');");
+                out.println("location='admin.jsp';");
+                out.println("</script>");
+            }else{
+            response.sendRedirect("error.jsp");
             }
         }
     }
