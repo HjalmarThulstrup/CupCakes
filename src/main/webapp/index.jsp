@@ -15,7 +15,7 @@
     <body>
         <%@include file="nav.jsp" %>
         <div class="wrapper">
-            <h1>Welcome to our CupCakes Site!!</h1>
+            <h1>Welcome to our CupCakes Site!</h1>
             <div style="width: 300px; margin: auto;">
                 <img src="Cupcakes-9.png" alt="cupcake" />
             </div>
