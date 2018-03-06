@@ -72,5 +72,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+#Ignore target folder
+target/*
 
 # End of https://www.gitignore.io/api/linux,macos,windows,netbeans
