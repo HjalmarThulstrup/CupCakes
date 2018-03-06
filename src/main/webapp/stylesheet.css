@@ -8,6 +8,7 @@ body{
     width: 100%;
     margin: 0;
     background-color: lightblue;
+    font-family: arial;
 }
 
 h1{
@@ -92,7 +93,7 @@ form
     padding: 50px 100px;
     margin: auto;
     border: 5px #542b0e solid;
-    
+
 }
 
 #formSearch *, #formCreate *
