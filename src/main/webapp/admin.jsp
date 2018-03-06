@@ -44,13 +44,17 @@
                     </form>
                 </div>
                 <div class="col border">
-                    <% for (Order order : dao.getOrder(id.getId())) {
-                            if (order.getUsername() != null) {
-                                out.println("<b>Order id:</b> " + order.getId() + " <b>Username:</b> " + order.getUsername() + " <b>Price:</b> " + order.getPrice());
-                                for (Cupcake cupcake : order.getCupcakes()) {
-                                    out.println("<br>-----");
-                                    out.println("<b>Bottom:</b> " + cupcake.getBottom().getName() + " <b>Top:</b> " + cupcake.getTop().getName() + " <b>Amount:</b> " + cupcake.getAmount());
+                    <% if (id != null) {
+
+                            for (Order order : dao.getOrder(id.getId())) {
+                                if (order.getUsername() != null) {
+                                    out.println("<b>Order id:</b> " + order.getId() + " <b>Username:</b> " + order.getUsername() + " <b>Price:</b> " + order.getPrice());
+                                    for (Cupcake cupcake : order.getCupcakes()) {
+                                        out.println("<br>-----");
+                                        out.println("<b>Bottom:</b> " + cupcake.getBottom().getName() + " <b>Top:</b> " + cupcake.getTop().getName() + " <b>Amount:</b> " + cupcake.getAmount());
+                                    }
                                 }
+
                             }
                         }%>
                 </div>
