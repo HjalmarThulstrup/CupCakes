@@ -1,7 +1,7 @@
 
-<form class="nav" style="margin: 0;" action='logOut' method='post'>
+<form class="navclass" style="margin: 0;" action='logOut' method='post'>
     <nav>
-        <div>
+        <div style="color: white; text-decoration: none;">
             <img src="Cupcakes-10.png" alt="" style="margin-right: 10px; margin-bottom: -5px; margin-top: 5px;" />
             <a href="index.jsp">Front Page</a>
             <a href="order.jsp">Order Cupcakes</a>
