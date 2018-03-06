@@ -31,9 +31,10 @@ h2{
 .wrapper{
     width: 800px;
     margin: auto;
-    margin-top: 5%;
+    margin-top: 4%;
     border: black 2px dashed;
     padding: 5px;
+    margin-bottom: 3%;
 }
 
 .imgdiv {
@@ -64,7 +65,7 @@ form {
 
 .nav {
     width: 100%;
-    height: 4%;
+    height: 5%;
     background-color: darkblue;
     color: white;
     font-size: 20pt;
@@ -76,13 +77,22 @@ form
     margin: 10px 0px;
 }
 
-#formSearch, #formCreate
+#formSearch
 {
     background: lightgrey;
     width: 500px;
     padding: 50px 100px;
     margin: auto;
     border: 2px black solid;
+}
+
+#formCreate{
+    background: lightgrey;
+    width: 500px;
+    padding: 50px 100px;
+    margin: auto;
+    border: 5px #542b0e solid;
+    
 }
 
 #formSearch *, #formCreate *
