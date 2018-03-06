@@ -48,7 +48,7 @@ build/
 nbbuild/
 dist/
 nbdist/
-target/
+target/*
 .nb-gradle/
 nbactions.xml
 
