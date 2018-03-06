@@ -14,43 +14,51 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Prices</title>
         <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
-
     </head>
     <%  DAO dao = new DAO(new DataSource1().getDataSource());%>
     <body>
         <%@include file="nav.jsp" %>
-        <h1 style="text-align: center; margin: auto; margin-top: 2%; margin-bottom: 1%;">Prices</h1>
-        <div class="wrapper" style="margin-top: 0;">
-            <h2>Bottoms</h2>
-            <table>
-                <tr>
-                    <td><b>Name:</b></td>
-                    <td><b>Price:</b></td>
-                </tr>
-                <% for (CupcakePart part : dao.getCupcakeBottoms()) {
-                        //out.println("<b>Name:</b> " + part.getName() + " <b>Price:</b> " + part.getPrice());
-                        out.println("<tr>");
-                        out.println("<td>" + part.getName() + "</td>");
-                        out.println("<td>" + part.getPrice() + "</td>");
-                        out.println("</tr>");
-                }
-                %>
-            </table>
-            <h2>Tops</h2>
-            <table>
-                <tr>
-                    <td><b>Name:</b></td>
-                    <td><b>Price:</b></td>
-                </tr>
-                <% for (CupcakePart part : dao.getCupcakeTops()) {
-                        //out.println("<b>Name:</b> " + part.getName() + " <b>Price:</b> " + part.getPrice());
-                        out.println("<tr>");
-                        out.println("<td>" + part.getName() + "</td>");
-                        out.println("<td>" + part.getPrice() + "</td>");
-                        out.println("</tr>");
-                }
-                %>
-            </table>
+        <div class="container">
+            <div class="container">
+                <h2>Tops</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (CupcakePart part : dao.getCupcakeBottoms()) {
+                                //out.println("<b>Name:</b> " + part.getName() + " <b>Price:</b> " + part.getPrice());
+                                out.println("<tr>");
+                                out.println("<td>" + part.getName() + "</td>");
+                                out.println("<td>" + part.getPrice() + "</td>");
+                                out.println("</tr>");
+                            }%>
+                    </tbody>
+                </table>
+            </div>
+            <div class="container">
+                <h2>Bottoms</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (CupcakePart part : dao.getCupcakeBottoms()) {
+                                //out.println("<b>Name:</b> " + part.getName() + " <b>Price:</b> " + part.getPrice());
+                                out.println("<tr>");
+                                out.println("<td>" + part.getName() + "</td>");
+                                out.println("<td>" + part.getPrice() + "</td>");
+                                out.println("</tr>");
+                            }%>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </body>
 </html>
