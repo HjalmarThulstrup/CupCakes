@@ -48,6 +48,7 @@ build/
 nbbuild/
 dist/
 nbdist/
+target/
 .nb-gradle/
 nbactions.xml
 
@@ -74,6 +75,5 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-
 
 # End of https://www.gitignore.io/api/linux,macos,windows,netbeans
