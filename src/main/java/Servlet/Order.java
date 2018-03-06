@@ -35,7 +35,7 @@ public class Order extends HttpServlet {
             int orderId = Integer.parseInt(request.getParameter("orderId"));
             OrderId order_id = new OrderId(orderId);
             request.getSession().setAttribute("order", order_id);
-            response.sendRedirect("viewOrder.jsp");
+            response.sendRedirect("admin.jsp");
         }
     }
 
