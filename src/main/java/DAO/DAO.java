@@ -336,6 +336,13 @@ public class DAO {
     }
 
 //DEPRICATEROO'D
+/**
+ * Takes an arraylist of orderpieces and an int for the user id and inserts both into the database.
+ * if it inserts the parameters successfully into the database it will return true. otherwise returns false.
+ * @param orderPieces
+ * @param userId
+ * @return 
+ */
     public boolean createOrder(ArrayList<OrderPiece> orderPieces, int userId) {
         double price = 0;
         ArrayList<Cupcake> cupcakes = new ArrayList();
