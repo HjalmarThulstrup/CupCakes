@@ -89,7 +89,10 @@ public class DAO {
         }
         return null;
     }
-    
+    /**
+     * Returns arraylist with all users. returns null if user table is empty.
+     * @return 
+     */
     public ArrayList<User> getUsers()
     {
         ArrayList<User> users = new ArrayList<>();
@@ -151,6 +154,10 @@ public class DAO {
         return null;
     }
 
+    /**
+     * Returns all orders. Returns null if order table is empty.
+     * @return 
+     */
     public ArrayList<Order> getOrders() {
         ArrayList<Order> orders = new ArrayList<>();
 
@@ -178,6 +185,11 @@ public class DAO {
         return null;
     }
     
+    /**
+     * returns an arraylist of all orders matching the parameter id. Returns null if there's no matches.
+     * @param id
+     * @return 
+     */
     public ArrayList<Order> getOrdersUserId(int id) {
         ArrayList<Order> orders = new ArrayList<>();
 
@@ -205,6 +217,10 @@ public class DAO {
         return null;
     }
 
+    /** 
+     * returns an arraylist of all orders with all tables inner joined. Returns null if there's no orders.
+     * @return 
+     */
     public ArrayList<Order> getOrdersWithInfo() {
         ArrayList<Order> orderList = new ArrayList<>();
         ArrayList<Cupcake> cupcakeList = new ArrayList<>();
