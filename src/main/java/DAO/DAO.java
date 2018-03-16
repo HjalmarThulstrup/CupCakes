@@ -32,9 +32,9 @@ public class DAO {
     }
 /**
  * Returns a user object if the username and password is valid. it returns null if it's not a valid user
- * @param username
- * @param password
- * @return 
+ * @param username users login name
+ * @param password users login password
+ * @return user object
  */
     public User validateUser(String username, String password) {
         try {
@@ -63,10 +63,10 @@ public class DAO {
 
     /**
      * Creates new user in the database and validates afterwards. Returns null if it fails. Else returns the newly created user.
-     * @param username
-     * @param password
-     * @param email
-     * @return 
+     * @param username users login name
+     * @param password users login password
+     * @param email users email
+     * @return user object
      */
     public User createAndValidateUser(String username, String password, String email) {
         try {
@@ -91,7 +91,7 @@ public class DAO {
     }
     /**
      * Returns arraylist with all users. returns null if user table is empty.
-     * @return 
+     * @return ArrayList with user objects
      */
     public ArrayList<User> getUsers()
     {
@@ -124,8 +124,8 @@ public class DAO {
 
     /**
      * returns user object with the same id as the parameter. Returns null if no match
-     * @param id
-     * @return 
+     * @param id users unique id
+     * @return user object
      */
     public User getUser(int id)
     {
@@ -156,7 +156,7 @@ public class DAO {
 
     /**
      * Returns all orders. Returns null if order table is empty.
-     * @return 
+     * @return Arraylist with order objects
      */
     public ArrayList<Order> getOrders() {
         ArrayList<Order> orders = new ArrayList<>();
@@ -187,8 +187,8 @@ public class DAO {
     
     /**
      * returns an arraylist of all orders matching the parameter id. Returns null if there's no matches.
-     * @param id
-     * @return 
+     * @param id unique user id
+     * @return ArrayList with order objects
      */
     public ArrayList<Order> getOrdersUserId(int id) {
         ArrayList<Order> orders = new ArrayList<>();
@@ -219,7 +219,7 @@ public class DAO {
 
     /** 
      * returns an arraylist of all orders with all tables inner joined. Returns null if there's no orders.
-     * @return 
+     * @return ArrayList with order objects
      */
     public ArrayList<Order> getOrdersWithInfo() {
         ArrayList<Order> orderList = new ArrayList<>();
@@ -321,8 +321,8 @@ public class DAO {
 
     /**
      * returns order matching the parameter id. returns null if there's no matches.
-     * @param id
-     * @return 
+     * @param id unique order id
+     * @return ArrayList with order objects
      */
     public ArrayList<Order> getOrder(int id) {
         ArrayList<Order> orderList = new ArrayList<>();
@@ -377,9 +377,9 @@ public class DAO {
 /**
  * Takes an arraylist of orderpieces and an int for the user id and inserts both into the database.
  * if it inserts the parameters successfully into the database it will return true. otherwise returns false.
- * @param orderPieces
- * @param userId
- * @return 
+ * @param orderPieces products from basket
+ * @param userId unique user id
+ * @return Boolean
  */
     public boolean createOrder(ArrayList<OrderPiece> orderPieces, int userId) {
         double price = 0;
@@ -431,7 +431,7 @@ public class DAO {
 
     /**
      * returns arraylist of all cupcake tops.
-     * @return 
+     * @return ArrayList with cupcakepart objects
      */
     public ArrayList<CupcakePart> getCupcakeTops() {
         ArrayList<CupcakePart> parts = new ArrayList<>();
@@ -461,7 +461,7 @@ public class DAO {
 
     /**
      * returns arraylist of all cupcake bottoms.
-     * @return 
+     * @return ArrayList with cupcakePart objects
      */
     public ArrayList<CupcakePart> getCupcakeBottoms() {
         ArrayList<CupcakePart> parts = new ArrayList<>();
@@ -491,8 +491,8 @@ public class DAO {
 
     /**
      * Returns cupcake bottom matching with the parameter id
-     * @param id
-     * @return 
+     * @param id unique cupcakepart id
+     * @return CupcakePart object
      */
     public CupcakePart getCupcakeBottom(int id) {
         try {
@@ -520,8 +520,8 @@ public class DAO {
 
     /**
      * returns cupcake top matching with the parameter id.
-     * @param id
-     * @return 
+     * @param id unique cupcakepart id
+     * @return CupcakePart object
      */
     public CupcakePart getCupcakeTop(int id) {
         try {
@@ -548,8 +548,8 @@ public class DAO {
     
 /**
  * Deletes order in database. Returns true if successful else returns false.
- * @param id
- * @return 
+ * @param id unique order id
+ * @return boolean
  */
     public boolean deleteOrder(int id) {
         try {
@@ -578,8 +578,8 @@ public class DAO {
     }
     /**
      * Deletes user in database. Returns true if successful else returns false.
-     * @param userId
-     * @return 
+     * @param userId unique order id
+     * @return boolean
      */
      public boolean deleteUser(int userId)
     {
