@@ -30,7 +30,12 @@ public class DAO {
     public DAO(DataSource ds) {
         dbc.setDataSource(ds);
     }
-
+/**
+ * Returns a user object if the username and password is valid. it returns null if it's not a valid user
+ * @param username
+ * @param password
+ * @return 
+ */
     public User validateUser(String username, String password) {
         try {
             dbc.open();
@@ -56,6 +61,13 @@ public class DAO {
         return null;
     }
 
+    /**
+     * Creates new user in the database and validates afterwards. Returns null if it fails. Else returns the newly created user.
+     * @param username
+     * @param password
+     * @param email
+     * @return 
+     */
     public User createAndValidateUser(String username, String password, String email) {
         try {
             dbc.open();
@@ -107,6 +119,11 @@ public class DAO {
         return null;
     }
 
+    /**
+     * returns user object with the same id as the parameter. Returns null if no match
+     * @param id
+     * @return 
+     */
     public User getUser(int id)
     {
         User user = null;
