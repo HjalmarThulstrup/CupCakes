@@ -319,6 +319,11 @@ public class DAO {
         return null;
     }
 
+    /**
+     * returns order matching the parameter id. returns null if there's no matches.
+     * @param id
+     * @return 
+     */
     public ArrayList<Order> getOrder(int id) {
         ArrayList<Order> orderList = new ArrayList<>();
         ArrayList<Cupcake> cupcakeList = new ArrayList<>();
@@ -424,6 +429,10 @@ public class DAO {
         return false;
     }
 
+    /**
+     * returns arraylist of all cupcake tops.
+     * @return 
+     */
     public ArrayList<CupcakePart> getCupcakeTops() {
         ArrayList<CupcakePart> parts = new ArrayList<>();
 
@@ -450,6 +459,10 @@ public class DAO {
         return null;
     }
 
+    /**
+     * returns arraylist of all cupcake bottoms.
+     * @return 
+     */
     public ArrayList<CupcakePart> getCupcakeBottoms() {
         ArrayList<CupcakePart> parts = new ArrayList<>();
 
@@ -476,6 +489,11 @@ public class DAO {
         return null;
     }
 
+    /**
+     * Returns cupcake bottom matching with the parameter id
+     * @param id
+     * @return 
+     */
     public CupcakePart getCupcakeBottom(int id) {
         try {
             dbc.open();
@@ -498,7 +516,13 @@ public class DAO {
 
         return null;
     }
+    
 
+    /**
+     * returns cupcake top matching with the parameter id.
+     * @param id
+     * @return 
+     */
     public CupcakePart getCupcakeTop(int id) {
         try {
             dbc.open();
@@ -521,7 +545,12 @@ public class DAO {
 
         return null;
     }
-
+    
+/**
+ * Deletes order in database. Returns true if successful else returns false.
+ * @param id
+ * @return 
+ */
     public boolean deleteOrder(int id) {
         try {
             dbc.open();
@@ -547,7 +576,11 @@ public class DAO {
         return false;
 
     }
-    
+    /**
+     * Deletes user in database. Returns true if successful else returns false.
+     * @param userId
+     * @return 
+     */
      public boolean deleteUser(int userId)
     {
         try {
